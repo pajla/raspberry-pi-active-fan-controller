@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 pin = 18 # The pin ID, edit here to change it
 toggleON = 60 # The temperature in Celsius after which we turn on the fan
 toggleOFF = 50 # The temperature in Celsius after which we turn off the fan
+sleepTime = 5 # The time in sec which we wait between temperature checks
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -29,6 +30,6 @@ try:
     setup()
     while True:
         checkTemp()
-        sleep(5) # Read the temperature every 5 sec, increase or decrease this limit if you want
+        sleep(sleepTime) # Read the temperature every 5 sec, increase or decrease this limit if you want
 except KeyboardInterrupt: # trap a CTRL+C keyboard interrupt
     GPIO.cleanup() # resets all GPIO ports used by this program
